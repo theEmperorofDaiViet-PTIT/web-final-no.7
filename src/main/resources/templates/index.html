@@ -1,0 +1,47 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Home</title>
+		<style>
+			table, tr, th, td {border: 1px solid black; }
+		</style>
+	</head>
+	<body>
+		<form th:action="@{/addStudent}" method="post" th:object="${student}">
+			<label for="id">Id:	</label>
+			<input type="text" id="id" th:field="*{id}"/><span th:text="${message}"></span>
+			<span th:if="${#fields.hasErrors('id')}"
+				  th:errors="*{id}">Id Error</span>
+			<br/>
+			
+			<label for="name">Name:	</label>
+			<input type="text" id="name" th:field="*{name}"/>
+			<span th:if="${#fields.hasErrors('name')}"
+				  th:errors="*{name}">Name Error</span>
+			<br/>
+			
+			<label for="dob">DOB:	</label>
+			<input type="date" id="dob" th:field="*{dob}"/>
+			<span th:if="${#fields.hasErrors('dob')}"
+				  th:errors="*{dob}">Dob Error</span>
+			<br/>
+			
+			<label for="department">Department: 	</label>
+			<select th:field="*{department}">
+				<option th:value="HTTT" th:text="HTTT"></option>
+				<option th:value="CNPM" th:text="CNPM"></option>
+				<option th:value="ATTT" th:text="ATTT"></option>
+				<option th:value="DTVT" th:text="DTVT"></option>
+			</select>
+<!-- 		<input type="radio" id="department" th:field="*{department}" th:value="HTTT"/>HTTT
+			<input type="radio" id="department" th:field="*{department}" th:value="CNPM"/>CNPM		-->
+			<span th:if="${#fields.hasErrors('department')}"
+				  th:errors="*{department}">Department Error</span>
+			<br/>
+				
+			<input type="submit" value="Add"/>
+			<input type="reset" value="Reset"/>
+		</form>
+	</body>
+</html>
